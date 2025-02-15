@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_map_and_location/convert_latlong_to_address.dart';
+import 'package:google_map_and_location/get_user_permission.dart';
 import 'package:google_map_and_location/home_screen.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ConvertLatlongToAddress( ),
+      home: GetUserPermission( ),
     );
   }
 }

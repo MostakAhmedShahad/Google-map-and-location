@@ -14,8 +14,8 @@ class _ConvertLatlongToAddressState extends State<ConvertLatlongToAddress> {
   String address = "Tap to fetch address";
 
   Future<void> fetchAddress() async {
-    double latitude = 33.6992;
-    double longitude = 72.9744;
+    double latitude = 23.7330;
+    double longitude = 90.4172;
     String apiKey = "AlzaSy1LRK3ButIWBw8DRkCDzAjNcJw2jTTEeMg"; // Replace with your API Key
 
     String url =
