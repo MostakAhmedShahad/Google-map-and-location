@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         markerId: MarkerId('2'),
         position: LatLng(23.85, 90.44),
         infoWindow: InfoWindow(title: 'To go')),
-         Marker(
+    Marker(
         markerId: MarkerId('3'),
         position: LatLng(24.36962000, 88.60748),
         infoWindow: InfoWindow(title: 'New Location')),
@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
+        
         initialCameraPosition: _kGooglePlex,
         markers: Set<Marker>.of(_marker),
         mapType: MapType.normal,
@@ -59,10 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
         GoogleMapController controller = await _controller.future;
         controller.animateCamera(CameraUpdate.newCameraPosition(
             CameraPosition(target: LatLng(24.36962000, 88.60748), zoom: 14)));
-            setState(() {
-              
-            });
+        setState(() {});
       }),
-    );   
+      
+    );
   }
 }
