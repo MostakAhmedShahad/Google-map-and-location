@@ -15,24 +15,54 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <script src="https://maps.gomaps.pro/maps/api/js?key=AlzaSy1LRK3ButIWBw8DRkCDzAjNcJw2jTTEeMg"></script>
+  <script
+    src="https://maps.gomaps.pro/maps/api/js?key=AlzaSy1LRK3ButIWBw8DRkCDzAjNcJw2jTTEeMg&libraries=marker,places"></script>
   <base href="$FLUTTER_BASE_HREF">
   <script>
+
+    let map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 37.7749, lng: -122.4194 }, // Default San Francisco
+        zoom: 12
+      });
+    }
+
+    function addAdvancedMarker(lat, lng, title) {
+      if (!map) return;
+      const position = new google.maps.LatLng(lat, lng);
+
+      const marker = new google.maps.marker.AdvancedMarkerElement({
+        map: map,
+        position: position,
+        title: title,
+      });
+    }
+
     function getUserLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            console.log("Latitude: " + position.coords.latitude);
-            console.log("Longitude: " + position.coords.longitude);
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            map.setCenter(new google.maps.LatLng(lat, lng));
+            addAdvancedMarker(lat, lng, "My Location");
+            window.flutter_inappwebview.callHandler('setUserLocation', lat, lng);
           },
           (error) => {
-            console.error("Error getting location: " + error.message);
+            console.error("Error fetching location:", error);
           }
         );
       } else {
         console.error("Geolocation is not supported by this browser.");
       }
     }
+
+    window.addEventListener("load", initMap);
+
+
+
   </script>
 
 
